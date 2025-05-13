@@ -32,5 +32,6 @@ public class L01_Test_Annotation {
     public void test03() {
         System.out.println("Test3 executed");
 
-    
+
+    }
 }
