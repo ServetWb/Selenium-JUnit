@@ -1,4 +1,4 @@
-package Tests.Day06_JUnit_FrameWork;
+package Day06_JUnit_FrameWork;
 
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
