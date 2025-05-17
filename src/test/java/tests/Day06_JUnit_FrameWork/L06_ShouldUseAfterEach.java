@@ -1,4 +1,4 @@
-package Day06_JUnit_FrameWork;
+package tests.Day06_JUnit_FrameWork;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

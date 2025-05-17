@@ -1,40 +1,21 @@
-package Day06_JUnit_FrameWork;
+package tests.Day06_JUnit_FrameWork;
 
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.time.Duration;
 
-    /*
-    JUnit automatically reports the results of executed test methods.
-
-    BUUUT...
-    JUnit determines whether a test method is PASSED or FAILED
-    based on whether the code runs without errors.
-
-    If the code runs smoothly and completes, the TEST is marked as PASSED.
-    If an error occurs during execution and not all code is executed,
-    the TEST is marked as FAILED.
-
-    If we are using if-else to perform a test,
-    we can throw an exception when it fails
-    to stop further execution and clearly indicate failure.
-
-   ===> See class L03 for more details.
-
-     */
-
-public class L02_if_Else_Test {
+public class L03_AutomaticResultReporting {
 
     @Test
-    public void testotomasyonuTest() {
+    public void testotomasyonuTesti() {
 
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
 
-        // Navigate to testotomasyonu site
+        // Navigate to the Test Otomasyonu website
         driver.get("https://testotomasyonu.com");
 
         // Verify that the URL contains "testotomasyonu"
@@ -42,9 +23,10 @@ public class L02_if_Else_Test {
         String expectedUrlContent = "testotomasyonu";
 
         if (actualUrl.contains(expectedUrlContent)) {
-            System.out.println("Testotomasyonu test PASSED");
+            System.out.println("Test Otomasyonu test PASSED");
         } else {
-            System.out.println("Testotomasyonu test FAILED");
+            System.out.println("Test Otomasyonu test FAILED");
+            throw new AssertionError("URL does not contain 'testotomasyonu'");
         }
 
         driver.quit();
@@ -57,7 +39,7 @@ public class L02_if_Else_Test {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
 
-        // Navigate to wisequarter site
+        // Navigate to the Wise Quarter website
         driver.get("https://wisequarter.com");
 
         // Verify that the page title contains "Wise Quarter"
@@ -68,6 +50,7 @@ public class L02_if_Else_Test {
             System.out.println("Wise Quarter test PASSED");
         } else {
             System.out.println("Wise Quarter test FAILED");
+            throw new AssertionError("Title does not contain 'Wise Quarter'");
         }
 
         driver.quit();
@@ -80,10 +63,10 @@ public class L02_if_Else_Test {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
 
-        // Navigate to YouTube
+        // Navigate to the YouTube website
         driver.get("https://youtube.com");
 
-        // Verify that the title is exactly "Youtube"
+        // Verify that the page title is exactly "Youtube"
         String actualTitle = driver.getTitle();
         String expectedTitle = "Youtube";
 
@@ -91,9 +74,9 @@ public class L02_if_Else_Test {
             System.out.println("YouTube test PASSED");
         } else {
             System.out.println("YouTube test FAILED");
+            throw new AssertionError("Title is not 'Youtube'");
         }
 
         driver.quit();
-
-        }
     }
+}

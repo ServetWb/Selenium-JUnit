@@ -1,51 +1,72 @@
-package Day06_JUnit_FrameWork;
+package tests.Day06_JUnit_FrameWork;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-  public class L04_SingleDriverUsage {
+public class L05_BeforeEach_AfterEach {
 
-      WebDriver driver;
+    /*
+    In order for the test methods to use the driver object without any issues,
+    the setUp() method MUST run first.
 
-    // Setup method to initialize the driver
+    JUnit automatically calls the setUp() method before test methods,
+    without the need for explicit method calls.
+
+    For this, @Before... annotations are used:
+
+        @BeforeEach : Runs BEFORE EACH test method.
+                      For example, if there are 3 test methods,
+                      it runs the setUp() method 3 times — once before each test.
+
+        @BeforeAll  : Runs ONCE BEFORE ALL test methods.
+                      For example, if there are 3 test methods,
+                      it runs the setUp() method only once before any of them.
+*/
+
+    WebDriver driver;
+
+    @BeforeEach
     public void setUp() {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
+        System.out.println("setUp() method executed");
+    }
+
+    @AfterEach
+    public void tearDown() {
+        driver.quit();
+        System.out.println("tearDown() method executed");
     }
 
     @Test
     public void testotomasyonuTest() {
-        setUp();
-
-        // Navigate to the Test Otomasyonu website
+        // Navigate to testotomasyonu website
         driver.get("https://testotomasyonu.com");
 
-        // Verify that the URL contains "testotomasyonu"
+        // Verify that the URL contains 'testotomasyonu'
         String actualUrl = driver.getCurrentUrl();
         String expectedUrlContent = "testotomasyonu";
 
         if (actualUrl.contains(expectedUrlContent)) {
-            System.out.println("Test Otomasyonu test PASSED");
+            System.out.println("Testotomasyonu test PASSED");
         } else {
-            System.out.println("Test Otomasyonu test FAILED");
+            System.out.println("Testotomasyonu test FAILED");
             throw new AssertionError("URL does not contain 'testotomasyonu'");
         }
-
-        driver.quit();
     }
 
     @Test
     public void wisequarterTest() {
-        setUp();
-
-        // Navigate to the Wise Quarter website
+        // Navigate to wisequarter website
         driver.get("https://wisequarter.com");
 
-        // Verify that the page title contains "Wise Quarter"
+        // Verify that the title contains 'Wise Quarter'
         String actualTitle = driver.getTitle();
         String expectedTitleContent = "Wise Quarter";
 
@@ -55,18 +76,14 @@ import java.time.Duration;
             System.out.println("Wise Quarter test FAILED");
             throw new AssertionError("Title does not contain 'Wise Quarter'");
         }
-
-        driver.quit();
     }
 
     @Test
     public void youtubeTest() {
-        setUp();
-
-        // Navigate to the YouTube website
+        // Navigate to YouTube website
         driver.get("https://youtube.com");
 
-        // Verify that the page title is exactly "Youtube"
+        // Verify that the title is exactly 'Youtube'
         String actualTitle = driver.getTitle();
         String expectedTitle = "Youtube";
 
@@ -75,8 +92,8 @@ import java.time.Duration;
         } else {
             System.out.println("YouTube test FAILED");
             throw new AssertionError("Title is not 'Youtube'");
-        }
 
-        driver.quit();
+
+        }
     }
 }
