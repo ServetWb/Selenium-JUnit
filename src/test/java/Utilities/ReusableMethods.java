@@ -7,9 +7,9 @@ import java.util.List;
 
 public  class ReusableMethods {
 
-    public static void wait(int min) {
+    public static void wait(int sec) {
         try {
-            Thread.sleep(min * 1000);
+            Thread.sleep(sec * 1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
