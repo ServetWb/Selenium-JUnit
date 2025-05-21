@@ -1,11 +1,13 @@
 package Utilities;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-public  class ReusableMethods {
+public class ReusableMethods {
 
     public static void wait(int sec) {
         try {
@@ -31,5 +33,41 @@ public  class ReusableMethods {
         return stringList;
 
 
+    }
+
+
+    public static void switchToTargetUrlWindow(WebDriver driver, String targetUrl) {
+        // Get the set of all currently open window handles
+        Set<String> allOpenWindowHandles = driver.getWindowHandles();
+        // Iterate through each window handle
+        for (String eachHandle : allOpenWindowHandles) {
+            // Switch to the current window
+            driver.switchTo().window(eachHandle);
+            // Get the current URL of the active window
+            String currentUrl = driver.getCurrentUrl();
+            // If the current URL matches the target URL, stop the loop
+            if (targetUrl.equals(currentUrl)) {
+                break;
+            }
+        }
+    }
+
+    public static void titleWindowSwitch(WebDriver driver, String targetTitle) {
+        // Get the set of all currently open window handles
+        Set<String> allOpenWindowHandles = driver.getWindowHandles();
+
+        // Iterate through each window handle
+        for (String eachHandle : allOpenWindowHandles) {
+            // Switch to the current window using its handle
+            driver.switchTo().window(eachHandle);
+
+            // Get the title of the currently active window
+            String currentTitle = driver.getTitle();
+
+            // If the current title matches the target title, exit the loop
+            if (targetTitle.equals(currentTitle)) {
+                break;
+            }
+        }
     }
 }
