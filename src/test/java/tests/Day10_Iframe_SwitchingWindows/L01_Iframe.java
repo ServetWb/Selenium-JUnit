@@ -1,4 +1,4 @@
-package tests.day10_Iframe_SwitchingWindows;
+package tests.Day10_Iframe_SwitchingWindows;
 
 import Utilities.ReusableMethods;
 import Utilities.TestBase_Each;
