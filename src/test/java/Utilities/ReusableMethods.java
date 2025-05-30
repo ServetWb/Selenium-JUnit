@@ -97,7 +97,7 @@ public class ReusableMethods {
         }
     }
 
-    public static void captureScreenshotWithReportName(WebDriver driver, String reportName) {
+    public static void takeFullPageScreenshotWithName(WebDriver driver, String reportName) {
 
         // Wait for half a second to ensure the page is fully loaded
         try {
